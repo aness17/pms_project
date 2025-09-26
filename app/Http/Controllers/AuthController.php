@@ -54,4 +54,33 @@ class AuthController extends Controller
         // kalau gagal
         return back()->withErrors(['otp' => 'OTP atau Password salah']);
     }
+
+    public function penilaian()
+    {
+        return view('dashboard'); // bikin file resources/views/dashboard.blade.php
+    }
+
+    public function notification()
+    {
+        return view('dashboard'); // bikin file resources/views/dashboard.blade.php
+    }
+
+    public function audit_trail()
+    {
+        return view('dashboard'); // bikin file resources/views/dashboard.blade.php
+    }
+
+    public function kuisioner()
+    {
+        return view('dashboard'); // bikin file resources/views/dashboard.blade.php
+    }
+
+    public function response()
+    {
+        return view('dashboard'); // bikin file resources/views/dashboard.blade.php
+    }
+    public function form()
+    {
+        return view('role.form'); // bikin file resources/views/dashboard.blade.php
+    }
 }

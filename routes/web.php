@@ -24,6 +24,14 @@ Route::get('/dashboard', function () {
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+// Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 Route::get('/otp', [AuthController::class, 'showOTP'])->name('otp.show');
 Route::post('/otp', [AuthController::class, 'verifyOtp'])->name('otp.verify');
+
+Route::get('/penilaian', [AuthController::class, 'penilaian'])->name('penilaian');
+Route::get('/audit_trail', [AuthController::class, 'audit_trail'])->name('audit_trail');
+Route::get('/notification', [AuthController::class, 'notification'])->name('notification');
+Route::get('/kuisioner', [AuthController::class, 'kuisioner'])->name('kuisioner');
+Route::get('/response', [AuthController::class, 'response'])->name('response');
+Route::get('/form', [AuthController::class, 'form'])->name('form');

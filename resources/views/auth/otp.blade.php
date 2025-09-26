@@ -12,7 +12,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{{ asset('images/btn_new_color.png') }}" />
+  <link rel="shortcut icon" href="{{ asset('images/btn2.png') }}" />
 </head>
 
 <body>
@@ -23,7 +23,10 @@
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5" style="border-radius: 30px;">
               <div class="brand-logo text-center mb-2">
-                <img src="{{ asset('images/btn_new_color.png') }}" alt="logo" style="max-width: 150px;">
+                <img src="{{ asset('images/btn_new_color.png') }}" alt="logo" style="max-width: 150px;"><br>
+                <small style="font-family: Poppins; font-size: 20px; color: #474141ff;">
+                  Premise Monitoring System
+                </small>
               </div>
               {{-- FORM OTP --}}
               <form class="pt-3" action="{{ route('otp.verify') }}" method="POST">
@@ -45,7 +48,7 @@
                   </small>
                 </div>
                 <div class="form-group mb-2">
-                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+                  <button type="submit" class="btn btn-primary btn-lg w-100" style="border-radius: 30px;">
                     VERIFIKASI OTP
                   </button>
                 </div>
