@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ asset('images/btn2.png') }}" />
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body>
@@ -66,9 +68,9 @@
   <script src="{{ asset('vendors/js/vendor.bundle.base.js') }}"></script>
   <script src="{{ asset('js/jquery.cookie.js') }}"></script>
   <!-- inject:js -->
-  <script src="{{ asset('js/off-canvas.js') }}"></script>
-  <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
-  <script src="{{ asset('js/template.js') }}"></script>
+  <!-- <script src="{{ asset('js/off-canvas.js') }}"></script>
+  <script src="{{ asset('js/hoverable-collapse.js') }}"></script> -->
+  <!-- <script src="{{ asset('js/template.js') }}"></script> -->
 </body>
 
 </html>
