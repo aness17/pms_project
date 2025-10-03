@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserOtp extends Model
 {
-    protected $table = 'user_otps';
+    protected $table = 't_users_otps';
     protected $primaryKey = 'id';
     public $timestamps = true;
 

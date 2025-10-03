@@ -141,9 +141,12 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{route('login')}}" class="btn btn-danger btn-sm">
-                            Logout <i class="mdi mdi-logout"></i>
-                        </a>
+                        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                Logout <i class="mdi mdi-logout"></i>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </nav>

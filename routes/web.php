@@ -15,24 +15,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return auth()->check()
+        ? redirect()->route('dashboard')
+        : redirect()->route('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// hanya untuk tamu (belum login)
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.process');
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.process');
+    // otp butuh session otp_user_id
+    Route::middleware('otp.session')->group(function () {
+        Route::get('/otp', [AuthController::class, 'showOtpForm'])->name('otp.form');
+        Route::post('/otp', [AuthController::class, 'verifyOtp'])->name('otp.verify');
+        Route::post('/resend-otp', [AuthController::class, 'resendOtp'])->name('resend.otp');
+    });
+});
 
-Route::get('/otp', [AuthController::class, 'showOtpForm'])->name('otp.form');
-Route::post('/otp', [AuthController::class, 'verifyOtp'])->name('otp.verify');
-Route::post('/resend-otp', [AuthController::class, 'resendOtp'])->name('resend.otp');
-
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
-// Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+// hanya untuk user yang sudah login
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
 
 Route::get('/penilaian', [AuthController::class, 'penilaian'])->name('penilaian');
 Route::get('/audit_trail', [AuthController::class, 'audit_trail'])->name('audit_trail');

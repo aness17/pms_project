@@ -46,9 +46,9 @@ class AuthController extends Controller
         ]);
 
         // kirim email
-        // Mail::raw("Kode OTP Anda adalah: $otp", function ($message) use ($user) {
-        //     $message->to($user->email)->subject('Kode OTP Login');
-        // });
+        Mail::raw("Kode OTP Anda adalah: $otp", function ($message) use ($user) {
+            $message->to($user->email)->subject('Kode OTP Login');
+        });
 
         // simpan session sementara supaya verify/resend bisa pakai session
         session([
@@ -67,7 +67,16 @@ class AuthController extends Controller
 
     public function showOtpForm()
     {
-        return view('auth.otp', ['email' => session('email')]);
+        if (!session()->has('otp_user_id')) {
+            return redirect()->route('login')->withErrors(['otp' => 'Silakan login terlebih dahulu.']);
+        }
+
+        return view('auth.otp', [
+            'email' => session('otp_user_email'),
+            'expiresIn' => session('otp_expires_at')
+                ? now()->diffInSeconds(session('otp_expires_at'))
+                : 300,
+        ]);
     }
 
     public function verifyOtp(Request $request)
