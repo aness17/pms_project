@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,19 +15,24 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login.form');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.process');
+
+Route::get('/otp', [AuthController::class, 'showOtpForm'])->name('otp.form');
+Route::post('/otp', [AuthController::class, 'verifyOtp'])->name('otp.verify');
+Route::post('/resend-otp', [AuthController::class, 'resendOtp'])->name('resend.otp');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 // Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard')->middleware('auth');
-Route::get('/otp', [AuthController::class, 'showOTP'])->name('otp.show');
-Route::post('/otp', [AuthController::class, 'verifyOtp'])->name('otp.verify');
 
 Route::get('/penilaian', [AuthController::class, 'penilaian'])->name('penilaian');
 Route::get('/audit_trail', [AuthController::class, 'audit_trail'])->name('audit_trail');
